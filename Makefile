@@ -1,17 +1,17 @@
-all: client tserver pserver
+all: client.exe tserver.exe pserver.exe
 
-client: client.o
-	gcc -o client client.o
+client.exe: client.o
+	gcc -o client.exe client.o
 
-pserver: server_main.o server_process.o server_activity.o
-	gcc -o pserver server_main.o server_process.o server_activity.o
+pserver.exe: server_main.o server_process.o server_activity.o
+	gcc -o pserver.exe server_main.o server_process.o server_activity.o
 
-tserver: server_main.o server_thread.o server_activity.o
-	gcc -o tserver server_main.o server_thread.o server_activity.o -pthread
+tserver.exe: server_main.o server_thread.o server_activity.o
+	gcc -o tserver.exe server_main.o server_thread.o server_activity.o -pthread
 
-process: pserver
+process: pserver.exe
 
-thread: tserver
+thread: tserver.exe
 
 server_main.o: server_main.c
 	gcc -c -o server_main.o server_main.c
@@ -29,5 +29,5 @@ client.o: client.c
 	gcc -c -o client.o client.c
 
 clean:
-	rm -rf client pserver tserver *.o
+	rm -rf *.exe *.o
 
